@@ -7,6 +7,7 @@
     <title>新規作成</title>
 
     <script src="/assets/js/metrixir.client.js"></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
 <body>
 <div class="full height image" layout:fragment="content">
@@ -19,10 +20,10 @@
 
                         <form class="ui form" method="post" action="/cardOrder/user">
 
-                            <!-- /*エラーがあれば表示する*/ -->
+                            <!-- /*エラーがあれば表示する*/
                             <ul class="ui red basic label" th:if="${form.hasErrors()}">
-                                <li th:each="error : ${form.getErrors().entrySet()}" th:text="${error.value}"></li>
-                            </ul>
+                                <li th:each="error : ${form.getErrors().entrySet()}" th:text="必須項目であるか，入力方式が異なっています"></li>
+                            </ul>-->
 
                             <div class="ui horizontal divider">ご本人について</div>
                             <DIV align="left"><font color="red">※</font>は必須項目です。
@@ -69,7 +70,7 @@
                             </div>
                             <div class="field" th:classappend="${form.hasErrors('zipCode')} ? 'error'">
                                 <label>郵便番号<font color="red">※</font></label>
-                                <input type="text" class="zipcode" name="zipCode" th:value="${form.zipCode}"placeholder="000-0000"/>
+                                <input type="text" class="zipcode" name="zipCode" maxlength="8" onkeyup="AjaxZip3.zip2addr(this,'','address','address');"placeholder="123-4567"/>
                             </div>
                             <div class="field" th:classappend="${form.hasErrors('address')} ? 'error'">
                                 <label>ご住所<font color="red">※</font></label>
