@@ -56,7 +56,16 @@ public class CardOrderController {
         // エラーを出したくないので強制的にエラーを消す.
         form.setErrors(null);
 
-        return templateEngine.render("cardOrder/job", "form", form);
+        if (form.getJob().equals("主婦")||form.getJob().equals("学生")||form.getJob().equals("他無職")) {
+            //return templateEngine.render("cardOrder/comleted", "form", form);
+            CardOrder cardOrder = beans.createFrom(form, CardOrder.class);
+
+            cardOrderDao.insert(cardOrder);
+
+            return redirect(getClass(), "completed", SEE_OTHER);
+        } else {
+            return templateEngine.render("cardOrder/job", "form", form);
+        }
     }
 
     /**
