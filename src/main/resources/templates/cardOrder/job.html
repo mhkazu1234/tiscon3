@@ -25,6 +25,8 @@
                             </ul>
 
                             <div class="ui horizontal divider">お勤め先について</div>
+                            <DIV align="left"><font color="red">※</font>は必須項目です。
+                                <br></DIV>
 
                             <div class="ui statement">ご職業が「経営・自営業」、「会社員」、「契約・派遣社員」、「公務員」、「民間団体」、「その他（有職）」の方は、以下の項目をご入力ください。</div>
 
@@ -88,9 +90,12 @@
                             </div>
 
                             <!--/*"ご本人"の入力値を引き回すための隠し項目*/-->
-                            <input type="hidden" name="kanjiName" th:value="${form.kanjiName}"/>
-                            <input type="hidden" name="kanaName" th:value="${form.kanaName}"/>
-                            <input type="hidden" name="alphabetName" th:value="${form.alphabetName}"/>
+                            <input type="hidden" name="kanjiNamesei" th:value="${form.kanjiNamesei}"/>
+                            <input type="hidden" name="kanjiNamemei" th:value="${form.kanjiNamemei}"/>
+                            <input type="hidden" name="kanaNamesei" th:value="${form.kanaNamesei}"/>
+                            <input type="hidden" name="kanaNamemei" th:value="${form.kanaNamemei}"/>
+                            <input type="hidden" name="alphabetNamesei" th:value="${form.alphabetNamesei}"/>
+                            <input type="hidden" name="alphabetNamemei" th:value="${form.alphabetNamemei}"/>
                             <input type="hidden" name="gender" th:value="${form.gender}"/>
                             <input type="hidden" name="dateOfBirth" th:value="${form.dateOfBirth}"/>
                             <input type="hidden" name="zipCode" th:value="${form.zipCode}"/>
