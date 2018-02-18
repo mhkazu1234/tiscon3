@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/layout">
+<head>
+
+    <title>確認画面</title>
+    　
+    <script src="/assets/js/metrixir.client.js"></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+</head>
+<body>
+<div class="full height image" layout:fragment="content">
+    <div class="ui main container">
+        <div class="ui information container">
+            <div class="ui middle center aligned grid">
+                <div class="center column">
+                    <div class="ui segment metrixir">
+                        <h1 class="ui aligned header teal">お申し込み情報</h1>
+
+                        <form class="ui form" method="post" action="/cardOrder/">
+
+                            <!-- /*エラーがあれば表示する*/ -->
+                            <ul class="ui red basic label" th:if="${form.hasErrors()}">
+                                <li th:each="error : ${form.getErrors().entrySet()}" th:text="${error.value}"></li>
+                            </ul>
+
+                            <div class="ui horizontal divider">入力内容の確認</div>
+                            <label>お名前</label>
+                            <td><input type="text" name="kanjiNamesei" size="30"></td>
+
+
+
+
+
+
+                            <div class="ui column grid">
+                                <div class="eight wide column left aligned">
+                                    <!--/*戻る場合、formの送り先を強制的に書き換える*/-->
+                                    <button class="ui button angle left icon" onclick="form.action='/cardOrder/modify';return true">戻る</button>
+                                </div>
+                                <div class="eight wide column right aligned">
+                                    <button class="ui teal button angle right icon">カードを申し込む</button>
+                                </div>
