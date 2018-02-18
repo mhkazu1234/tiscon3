@@ -86,8 +86,10 @@
                             </div>
                             <div class="field" th:classappend="${form.hasErrors('emailAddress')} ? 'error'">
                                 <label>メールアドレス<font color="red">※</font></label>
-                                <input type="text" name="emailAddress" th:value="${form.emailAddress}"placeholder="xxxxx@xxxx.ne.jp"/>
+                                <input type="text" name="emailAddress" th:value="${form.emailAddress}"placeholder="xxxxx@example.jp"/>
                             </div>
+
+
                             <div class="field" th:classappend="${form.hasErrors('spouse')} ? 'error'">
                                 <label>配偶者有無<font color="red">※</font></label>
                                 <input type="radio" name="spouse" value="1" th:checked="${form.spouse}=='1'"/>配偶者あり
@@ -128,7 +130,7 @@
                                 <input type="radio" name="job" value="他無職" th:checked="${form.job}=='他無職'"/>その他（無職）
                             </div>
 
-                            <!--/*"お勤め先"の入力値を引き回すための隠し項目*/-->
+                            <!--/*"勤務先"の入力値を引き回すための隠し項目*/-->
                             <input type="hidden" name="employerName" th:value="${form.employerName}"/>
                             <input type="hidden" name="employerZipCode" th:value="${form.employerZipCode}"/>
                             <input type="hidden" name="employerAddress" th:value="${form.employerAddress}"/>
