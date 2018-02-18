@@ -7,6 +7,7 @@ import jp.co.tis.tiscon3.dao.CardOrderDao;
 import jp.co.tis.tiscon3.entity.CardOrder;
 import jp.co.tis.tiscon3.form.CardOrderForm;
 import kotowari.component.TemplateEngine;
+import org.h2.engine.User;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -53,20 +54,22 @@ public class CardOrderController {
      * @return お勤め先登録ページresponse
      */
     public HttpResponse inputJob(CardOrderForm form) {
-        // エラーを出したくないので強制的にエラーを消す.
-        form.setErrors(null);
 
-        if (form.getJob().equals("主婦")||form.getJob().equals("学生")||form.getJob().equals("他無職")) {
-            //return templateEngine.render("cardOrder/comleted", "form", form);
+        if (form.hasErrors()) {
+            //主婦とかだけどなんか空白だったらエラー
+            return templateEngine.render("cardOrder/user", "form", form);
+        }
+        if (form.getJob().equals("主婦") || form.getJob().equals("学生") || form.getJob().equals("他無職")) {
             CardOrder cardOrder = beans.createFrom(form, CardOrder.class);
 
             cardOrderDao.insert(cardOrder);
 
             return redirect(getClass(), "completed", SEE_OTHER);
-        } else {
-            return templateEngine.render("cardOrder/job", "form", form);
         }
+        return templateEngine.render("cardOrder/job", "form", form);
     }
+
+
 
     /**
      * 本人登録ページに戻ります.
